@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@import './button.scss';
+@import './input.scss';
+@import './spinner.scss';
+@import './home.scss';
+@import './perfil.scss';
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #000;
+  font-size: 1.6rem;
+  font-family: 'Open Sans', sans-serif;
+}
