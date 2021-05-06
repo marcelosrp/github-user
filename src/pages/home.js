@@ -22,6 +22,10 @@ const Home = () => {
     }
   }, [])
 
+  function handleKeyPress(e) {
+    if (e.charCode === 13) handleSearchUser()
+  }
+
   function handleChangeSearch(target) {
     const { value } = target
     setUsername(value)
@@ -57,6 +61,7 @@ const Home = () => {
             value={username}
             placeholder="Type the username here..."
             handleChangeSearch={handleChangeSearch}
+            handleKeyPress={handleKeyPress}
           />
           <Button handleSearchUser={handleSearchUser} disabled={loading}>
             <FaSistrix />
