@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, memo } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import Input from '../components/Input/'
@@ -70,4 +70,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default memo(Home)
