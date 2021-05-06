@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+import ErrorBoundary from './utils/error-boundary'
+
+const main = (
+  <ErrorBoundary>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ErrorBoundary>
 )
+
+ReactDOM.render(main, document.getElementById('root'))
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,4 +1,7 @@
 import React, { Component, memo } from 'react'
+import PropTypes from 'prop-types'
+
+import WrapError from '../components/Error/wrapError'
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -13,17 +16,20 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log('Something went wrong.', error, errorInfo)
+    console.log('Algo deu errado', error, errorInfo)
   }
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong. Try again later.</h1>
+      return <WrapError />
     }
 
-    // eslint-disable-next-line react/prop-types
     return this.props.children
   }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.any
 }
 
 export default memo(ErrorBoundary)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, Redirect, Link } from 'react-router-dom'
 
 import Avatar from '../components/Avatar'
@@ -10,11 +10,20 @@ import Repos from '../components/Repos'
 import { URL } from '../services/api'
 
 const PerfilPage = () => {
+  const _isMounted = useRef(true)
+
   const location = useLocation()
   const [username] = useState(location.pathname.split('/')[2])
   const [goToHome, setGoToHome] = useState(false)
   const [userData, setUserData] = useState(null)
   const [reposData, setReposData] = useState(null)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false
+    }
+  }, [])
 
   useEffect(() => {
     if (username === undefined) setGoToHome(true)
@@ -24,9 +33,7 @@ const PerfilPage = () => {
     async function getUserInfos() {
       try {
         const response = await fetch(`${URL}/${username}`)
-        if (!response.ok) {
-          console.log('erro')
-        }
+        if (!response.ok && response.status === 404) setError(true)
         const data = await response.json()
         setUserData(data)
       } catch (error) {
@@ -40,9 +47,7 @@ const PerfilPage = () => {
     async function getRepos() {
       try {
         const response = await fetch(`${URL}/${username}/repos`)
-        if (!response.ok) {
-          console.log('erro')
-        }
+        if (!response.ok && response.status === 404) setError(true)
         const data = await response.json()
         setReposData(data)
       } catch (error) {
@@ -99,6 +104,7 @@ const PerfilPage = () => {
         </section>
       </main>
       {goToHome && <Redirect to="/" />}
+      {error && <Redirect to="/not-found" />}
     </>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import WrapError from '../components/Error/wrapError'
 
 const NotFound = () => {
-  return <div>404 - Página não encontrada</div>
+  return <WrapError message="404 - Página não encontrada" />
 }
 
 export default NotFound
