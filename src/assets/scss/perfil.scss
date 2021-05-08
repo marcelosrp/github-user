@@ -35,7 +35,7 @@
       }
 
       &__textbio {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         line-height: 20px;
         margin: 10px 0;
       }
@@ -48,7 +48,7 @@
       li {
         align-items: center;
         display: flex;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
 
         svg {
           margin-right: 5px;
@@ -67,6 +67,11 @@
       li {
         font-size: 1.4rem;
         margin-bottom: 10px;
+      }
+
+      a {
+        color: #2724ad;
+        text-decoration: none;
       }
     }
   }

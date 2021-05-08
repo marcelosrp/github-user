@@ -36,7 +36,10 @@ const PerfilPage = () => {
       try {
         setLoading(true)
         const response = await fetch(`${URL}/${username}`)
-        if (!response.ok && response.status === 404) setError(true)
+        if (!response.ok && response.status === 404) {
+          setError(true)
+          return false
+        }
         const data = await response.json()
         setUserData(data)
       } catch (error) {
@@ -53,7 +56,10 @@ const PerfilPage = () => {
     async function getRepos() {
       try {
         const response = await fetch(`${URL}/${username}/repos`)
-        if (!response.ok && response.status === 404) setError(true)
+        if (!response.ok && response.status === 404) {
+          setError(true)
+          return false
+        }
         const data = await response.json()
         setReposData(data)
       } catch (error) {
